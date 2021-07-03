@@ -21,6 +21,13 @@ app.use(bodyParser.json())
 const incomeRouter = require('./routes/income')
 app.use('/income',incomeRouter)
 
+
+const expenseRouter = require('./routes/expense')
+app.use('/expense',expenseRouter)
+
+const userRouter = require('./routes/user')
+app.use('/user',userRouter)
+
 // app.use(express.json)
 // app.use(express.urlencoded({ extended: true }))
 

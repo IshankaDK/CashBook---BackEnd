@@ -1,18 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const Income = require('../models/IncomeSchema')
+const Expense = require('../models/ExpenseSchema')
 
 router.get('/',  async(req, res) => {
     try {
-        const allIncomes = await Income.find()
-        res.json(allIncomes)
+        const allExpense = await Expense.find()
+        res.json(allExpense)
     } catch (err) {
         res.send("Error : " + err)
     }
 })
 
 router.post('/', async (req, res) => {
-    const income = new Income({
+    const expense = new Expense({
         user:req.body.user,
         date: req.body.date,
         amount: req.body.amount,
@@ -21,8 +21,8 @@ router.post('/', async (req, res) => {
         type: req.body.type
     })
     try {
-        const inc = await income.save()
-        res.json(inc)
+        const ex = await expense.save()
+        res.json(ex)
     } catch (err) {
         res.send("Error" + err)
     }

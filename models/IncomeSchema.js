@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const incomeSchema = new mongoose.Schema({
-    // user: {
-    //     type: String,
-    //     ref: "User"
-    // },
+    user: {
+        type: String,
+        ref: "User"
+    },
     date: {
         type: Date,
         required: true,
