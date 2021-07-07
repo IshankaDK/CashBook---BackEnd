@@ -14,7 +14,7 @@ router.get('/',  async(req, res) => {
 router.post('/', async (req, res) => {
     const income = new Income({
         user:req.body.user,
-        date: req.body.date,
+        // date: req.body.date,
         amount: req.body.amount,
         note: req.body.note,
         catagory: req.body.catagory,
@@ -22,7 +22,8 @@ router.post('/', async (req, res) => {
     })
     try {
         const inc = await income.save()
-        res.json(inc)
+        console.log(inc);
+        res.json(true)
     } catch (err) {
         res.send("Error" + err)
     }

@@ -4,8 +4,19 @@ const User = require('../models/UserSchema')
 
 router.get('/', async(req, res) =>{
     try{
-        const allUsers = await User.find()
-        res.json(allUsers)
+        const user = await User.find({email : req.query.email})
+        console.log(user[0]);
+        console.log(user[0]._id);
+        if(user[0].email == req.query.email){
+            if(user[0].password == req.query.password){
+                res.json(user[0])
+            }else{
+                res.json(false)
+            }
+        }else{
+            res.json("email not found" + err)
+        }
+       
     }catch(err){
         res.send("Error : "+err)
     }
