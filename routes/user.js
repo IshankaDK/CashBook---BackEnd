@@ -14,14 +14,14 @@ router.get('/', async(req, res) =>{
 router.post('/', async (req, res) => {
     const user = new User({
        userId:req.body.userId,
-       first_name:req.body.first_name,
-       last_name:req.body.last_name,
+       name:req.body.name,
        email:req.body.email,
        password:req.body.password
     })
     try {
         const us = await user.save()
-        res.json(us)
+        res.json(true)
+        console.log(us);
     } catch (err) {
         res.send("Error" + err)
     }
