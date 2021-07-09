@@ -4,8 +4,16 @@ const Income = require('../models/IncomeSchema')
 
 router.get('/',  async(req, res) => {
     try {
-        const allIncomes = await Income.find()
-        res.json(allIncomes)
+        const allIncomes = await Income.find({user : req.query.user})
+        let inTotal=0;
+        for (const key in allIncomes) {
+            if (Object.hasOwnProperty.call(allIncomes, key)) {
+                const element = allIncomes[key].amount;
+                inTotal+=element;
+            }
+        }
+        console.log(inTotal);
+        res.json(inTotal)
     } catch (err) {
         res.send("Error : " + err)
     }
@@ -20,6 +28,7 @@ router.post('/', async (req, res) => {
         catagory: req.body.catagory,
         type: req.body.type
     })
+   
     try {
         const inc = await income.save()
         console.log(inc);

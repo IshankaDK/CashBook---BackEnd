@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const expenseSchema = new mongoose.Schema({
     user: {
         type: String,
-        ref: "User"
+        ref: "user"
     },
     date: {
         type: Date,
