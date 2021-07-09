@@ -4,7 +4,7 @@ const Income = require('../models/IncomeSchema')
 
 router.get('/',  async(req, res) => {
     try {
-        const allIncomes = await Income.find({user : req.query.user})
+        const allIncomes = await Income.find({user : req.query.user},{amount:1})
         let inTotal=0;
         for (const key in allIncomes) {
             if (Object.hasOwnProperty.call(allIncomes, key)) {
