@@ -6,15 +6,19 @@ router.get('/',  async(req, res) => {
     try {
         const allExpense = await Expense.find({user : req.query.user},{amount:1})
         let exTotal=0;
-        for (const key in allExpense) {
-            if (Object.hasOwnProperty.call(allExpense, key)) {
-                const element = allExpense[key].amount;
-                exTotal+=element;
+        if(allExpense.length ==0 ){
+            res.json(0);
+        }else{
+            for (const key in allExpense) {
+                if (Object.hasOwnProperty.call(allExpense, key)) {
+                    const element = allExpense[key].amount;
+                    exTotal+=element;
+                }
             }
+            res.json(exTotal)
         }
-
+    
         console.log(exTotal);
-        res.json(exTotal)
     } catch (err) {
         res.send("Error : " + err)
     }
